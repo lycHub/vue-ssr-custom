@@ -1,6 +1,6 @@
 const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 /*
@@ -14,16 +14,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   mode: "development",
-  entry: './src/main.js',
   output: {
     filename: "[name].[contenthash:8].js"
-  },
-  devServer: {
-    port: 4200,
-    contentBase: './public',
-    watchOptions: {
-      ignored: ['/node_modules/**', 'webpack.config.js']
-    },
   },
   resolve: {
     alias: {
@@ -56,7 +48,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       title: "vue ssr",

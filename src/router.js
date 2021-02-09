@@ -10,6 +10,9 @@ const routes = [
   { path: '**', redirect: '/home' },
 ]
 
-export const router = new VueRouter({
-  routes
-})
+export default function () {
+  return new VueRouter({
+    mode: 'history',
+    routes
+  });
+}
