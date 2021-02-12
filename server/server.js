@@ -5,10 +5,10 @@ const fs = require('fs')
 // const bundlePath = path.join('dist', 'server', 'vue-ssr-server-bundle.json')
 // const serverBundle = fs.readFileSync(bundlePath, 'utf-8')
 
-const serverBundle = require('./dist/server/vue-ssr-server-bundle.json')
-const clientManifest = require('./dist/client/vue-ssr-client-manifest.json')
+const serverBundle = require('../dist/server/vue-ssr-server-bundle.json')
+const clientManifest = require('../dist/client/vue-ssr-client-manifest.json')
 
-const template = fs.readFileSync('./public/index.template.html', 'utf-8');
+const template = fs.readFileSync('public/index.template.html', 'utf-8');
 const renderer = createBundleRenderer(serverBundle, {
   runInNewContext: false,
   template,
