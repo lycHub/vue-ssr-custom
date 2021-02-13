@@ -4,6 +4,7 @@ const baseConfig = require('./base.js')
 const VueClientPlugin = require('vue-server-renderer/client-plugin')
 
 module.exports = merge(baseConfig, {
+  mode: 'development',
   entry: join(__dirname, '../src/entry-client.js'),
   output: {
     path: join(__dirname, '../dist/client')
@@ -13,7 +14,7 @@ module.exports = merge(baseConfig, {
     watchOptions: {
       ignored: ['/node_modules/**', 'webpack.config.js']
     },
-    // historyApiFallback: true,
+    historyApiFallback: true
   },
   plugins: [
     new VueClientPlugin()

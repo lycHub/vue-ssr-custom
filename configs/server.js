@@ -5,6 +5,7 @@ const baseConfig = require('./base.js')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
 module.exports = merge(baseConfig, {
+  mode: 'production',
   entry: join(__dirname, '../src/entry-server.js'),
   target: 'node',
   devtool: 'source-map',
