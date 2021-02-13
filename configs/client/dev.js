@@ -1,14 +1,11 @@
 const { merge } = require('webpack-merge')
 const { join } = require('path')
-const baseConfig = require('./base.js')
+const baseConfig = require('../base.js')
 const VueClientPlugin = require('vue-server-renderer/client-plugin')
 
 module.exports = merge(baseConfig, {
   mode: 'development',
-  entry: join(__dirname, '../src/entry-client.js'),
-  output: {
-    path: join(__dirname, '../dist/client')
-  },
+  entry: join(__dirname, '../../src/entry-client.js'),
   devServer: {
     port: 4201,
     contentBase: 'public',
@@ -20,4 +17,4 @@ module.exports = merge(baseConfig, {
   plugins: [
     new VueClientPlugin()
   ]
-})
+});

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>this is home ssa</h2>
+    <h2>this is home</h2>
     <router-link to="/about">to about</router-link>
   </div>
 </template>

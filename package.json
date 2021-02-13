@@ -4,11 +4,12 @@
   "description": "vue ssr",
   "main": "index.js",
   "scripts": {
-    "start:spa": "webpack serve --config configs/client.js",
-    "start:ssr": "concurrently \"npm run start\" \"nodemon server\"",
-    "build:client": "webpack --config configs/client.js",
+    "start:spa": "webpack serve --config configs/client/index.js",
+    "start:ssr": "concurrently \"npm run start:spa\" \"nodemon server\"",
+    "build:client": "webpack --env production --config configs/client",
     "build:server": "webpack --config configs/server.js",
-    "build": "concurrently \"npm run build:client\" \"npm run build:server\""
+    "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
+    "server": "node server"
   },
   "repository": {
     "type": "git",
