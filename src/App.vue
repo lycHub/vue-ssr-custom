@@ -16,6 +16,6 @@
 </script>
 <style>
   .main {
-    color: blueviolet;
+    color: #e234a7;
   }
 </style>
