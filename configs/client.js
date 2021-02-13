@@ -10,7 +10,8 @@ module.exports = merge(baseConfig, {
     path: join(__dirname, '../dist/client')
   },
   devServer: {
-    port: 4200,
+    port: 4201,
+    contentBase: 'public',
     watchOptions: {
       ignored: ['/node_modules/**', 'webpack.config.js']
     },

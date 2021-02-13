@@ -1,16 +1,5 @@
-const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-
-/*
-* import { CleanWebpackPlugin } from "clean-webpack-plugin";
-    new CopyPlugin({
-      patterns: [
-        { from: 'public' }
-      ]
-    }),
-* */
 
 module.exports = {
   mode: "development",
@@ -48,7 +37,6 @@ module.exports = {
     ]
   },
   plugins: [
-    // new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       title: "vue ssr",

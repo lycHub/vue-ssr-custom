@@ -1,8 +1,11 @@
-const server = require('express')()
+const express = require('express');
+const app = express()
 const routes = require('./routes');
 
-server.get('*', routes);
+// app.use(express.static('public'));
 
-server.listen(8000, () => {
+app.get('*', routes);
+
+app.listen(8000, () => {
   console.log('Listen at http://localhost:8000')
 });

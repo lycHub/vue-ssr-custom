@@ -30,8 +30,15 @@ router.get('*', async (req, res) => {
   if (!serverBundle) {
     res.end('waiting');
   } else {
+    if (req.url === "/favicon.ico") {
+      res.end();
+      return;
+    }
     console.log('有boundle');
-    const clientBoundle = await axios.get('http://localhost:4200/vue-ssr-client-manifest.json')
+    const context = {
+      url: req.url
+    }
+    const clientBoundle = await axios.get('http://localhost:4201/vue-ssr-client-manifest.json')
     const clientManifest = clientBoundle.data;
     const template = readFileSync('public/index.template.html', 'utf-8');
     const renderer = createBundleRenderer(serverBundle, {
@@ -39,9 +46,6 @@ router.get('*', async (req, res) => {
       template,
       clientManifest
     });
-    const context = {
-      url: req.url
-    }
     renderer.renderToString(context, (err, html) => {
       if (err) {
         res.status(500).end('Internal Server Error')
