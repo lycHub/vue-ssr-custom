@@ -7,5 +7,5 @@ const routes = require('./routes');
 app.get('*', routes);
 
 app.listen(8000, () => {
-  console.log('Listen at http://localhost:8000')
+  console.log('Listen at http://localhost:8000');
 });
