@@ -6,6 +6,9 @@ const VueClientPlugin = require('vue-server-renderer/client-plugin')
 module.exports = merge(baseConfig, {
   mode: 'development',
   entry: join(__dirname, '../../src/entry-client.js'),
+  output: {
+    publicPath: 'http://localhost:4201' // 控制clientManifest.publicPath
+  },
   devServer: {
     port: 4201,
     contentBase: 'public',

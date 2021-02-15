@@ -38,7 +38,6 @@ module.exports = {
         use: ['vue-style-loader', {
           loader: "css-loader",
           options: {
-            // https://blog.csdn.net/vv_bug/article/details/108148263
             esModule: false
           }
         }, 'sass-loader']

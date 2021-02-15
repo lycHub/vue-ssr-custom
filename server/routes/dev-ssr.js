@@ -6,6 +6,7 @@ const MemoryFS = require('memory-fs')
 const webpack = require('webpack')
 const express = require('express');
 const router = express.Router({ caseSensitive: true });
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 const serverConfig = require('../../configs/server')
@@ -29,11 +30,14 @@ const serverInfo =
   `express/${require('express/package.json').version} ` +
   `vue-server-renderer/${require('vue-server-renderer/package.json').version}`
 
+
+router.use('/api', createProxyMiddleware({
+  target: 'https://toutiao.m.lipengzhou.com',
+  changeOrigin: true,
+  secure: false
+}));
+
 router.get('*', async (req, res) => {
-  res.setHeader("Content-Type", "text/html")
-  res.setHeader("Server", serverInfo)
-
-
   if (!serverBundle) {
     res.end('waiting');
   } else {
@@ -41,10 +45,7 @@ router.get('*', async (req, res) => {
       res.end();
       return;
     }
-    // console.log('有boundle');
-    const context = {
-      url: req.url
-    }
+    res.setHeader("Server", serverInfo);
     const clientBoundle = await axios.get('http://localhost:4201/vue-ssr-client-manifest.json')
     const clientManifest = clientBoundle.data;
     const template = readFileSync('public/index.template.html', 'utf-8');
@@ -54,7 +55,7 @@ router.get('*', async (req, res) => {
       clientManifest,
       // basedir: resolve('./dist')
     });
-    renderer.renderToString(context, (err, html) => {
+    renderer.renderToString({ url: req.url }, (err, html) => {
       if (err) {
         res.status(500).end('Internal Server Error')
         throw err;
