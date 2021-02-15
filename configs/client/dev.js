@@ -8,10 +8,18 @@ module.exports = merge(baseConfig, {
   entry: join(__dirname, '../../src/entry-client.js'),
   devServer: {
     port: 4201,
+    contentBase: 'public',
     watchOptions: {
       ignored: ['/node_modules/**', 'webpack.config.js']
     },
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: 'https://toutiao.m.lipengzhou.com',
+        changeOrigin: true,
+        secure: false
+      },
+    }
   },
   plugins: [
     new VueClientPlugin()
