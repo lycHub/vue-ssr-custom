@@ -4,6 +4,8 @@ import createRouter from './router'
 import Meta from 'vue-meta'
 Vue.use(Meta)
 
+import './assets/styles/index';
+
 Vue.config.productionTip = false
 
 

@@ -9,7 +9,7 @@ module.exports = {
     alias: {
       // vue$: "vue/dist/vue.esm.js"
     },
-    extensions: ['.vue', '.js']
+    extensions: ['.vue', '.js', '.scss']
   },
   module: {
     rules: [
@@ -32,6 +32,16 @@ module.exports = {
             esModule: false
           }
         }]
+      },
+      {
+        test: /\.scss$/,
+        use: ['vue-style-loader', {
+          loader: "css-loader",
+          options: {
+            // https://blog.csdn.net/vv_bug/article/details/108148263
+            esModule: false
+          }
+        }, 'sass-loader']
       }
     ]
   },

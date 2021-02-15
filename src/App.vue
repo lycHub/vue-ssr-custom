@@ -14,7 +14,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .main {
     color: #e234a7;
   }
