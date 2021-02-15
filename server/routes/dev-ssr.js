@@ -22,11 +22,18 @@ serverCompiler.watch({}, (err, stats) => {
   
   const serverBundlePath = path.join(serverConfig.output.path, 'vue-ssr-server-bundle.json')
   serverBundle = JSON.parse(mfs.readFileSync(serverBundlePath, 'utf-8'))
-  console.log('new serverBundle generated');
+  // console.log('new serverBundle generated');
 })
 
+const serverInfo =
+  `express/${require('express/package.json').version} ` +
+  `vue-server-renderer/${require('vue-server-renderer/package.json').version}`
 
 router.get('*', async (req, res) => {
+  res.setHeader("Content-Type", "text/html")
+  res.setHeader("Server", serverInfo)
+
+
   if (!serverBundle) {
     res.end('waiting');
   } else {
@@ -34,7 +41,7 @@ router.get('*', async (req, res) => {
       res.end();
       return;
     }
-    console.log('有boundle');
+    // console.log('有boundle');
     const context = {
       url: req.url
     }
@@ -44,7 +51,8 @@ router.get('*', async (req, res) => {
     const renderer = createBundleRenderer(serverBundle, {
       runInNewContext: false,
       template,
-      clientManifest
+      clientManifest,
+      // basedir: resolve('./dist')
     });
     renderer.renderToString(context, (err, html) => {
       if (err) {
