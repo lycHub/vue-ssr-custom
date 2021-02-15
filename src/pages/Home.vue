@@ -2,7 +2,7 @@
   <div class="home">
     <h2>this is home</h2>
     <router-link to="/about">to about</router-link>
-    <div class="test">test</div>
+    <div class="test" @click="onClick">test</div>
   </div>
 </template>
 
@@ -11,6 +11,11 @@
     name: "Home",
     metaInfo: {
       title: 'Home us'
+    },
+    methods: {
+      onClick() {
+        alert('aaa');
+      }
     }
   }
 </script>

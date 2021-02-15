@@ -14,7 +14,7 @@
     }
   }
 </script>
-<style scoped>
+<style scoped lang="scss">
   .main {
     color: #e234a7;
   }
