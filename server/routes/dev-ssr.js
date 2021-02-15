@@ -6,7 +6,6 @@ const MemoryFS = require('memory-fs')
 const webpack = require('webpack')
 const express = require('express');
 const router = express.Router({ caseSensitive: true });
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 const serverConfig = require('../../configs/server')
@@ -29,13 +28,6 @@ serverCompiler.watch({}, (err, stats) => {
 const serverInfo =
   `express/${require('express/package.json').version} ` +
   `vue-server-renderer/${require('vue-server-renderer/package.json').version}`
-
-
-router.use('/api', createProxyMiddleware({
-  target: 'https://toutiao.m.lipengzhou.com',
-  changeOrigin: true,
-  secure: false
-}));
 
 router.get('*', async (req, res) => {
   if (!serverBundle) {
