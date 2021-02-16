@@ -42,7 +42,7 @@ router.get('*', async (req, res) => {
     const clientBase = 'http://localhost:' + clientPort;
     const clientBundle = await axios.get(clientBase + '/vue-ssr-client-manifest.json')
     const clientManifest = clientBundle.data;
-    clientManifest.publicPath = clientBase;
+    // clientManifest.publicPath = clientBase;
     const template = readFileSync('public/index.template.html', 'utf-8');
     const renderer = createBundleRenderer(serverBundle, {
       runInNewContext: false,
