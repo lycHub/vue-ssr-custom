@@ -2,15 +2,16 @@ const { merge } = require('webpack-merge')
 const { join } = require('path')
 const baseConfig = require('../base.js')
 const VueClientPlugin = require('vue-server-renderer/client-plugin')
+const {clientPort} = require("../constant");
 
 module.exports = merge(baseConfig, {
   mode: 'development',
   entry: join(__dirname, '../../src/entry-client.js'),
   output: {
-    publicPath: 'http://localhost:4201' // 控制clientManifest.publicPath
+    // publicPath: 'http://localhost:4201' // 控制clientManifest.publicPath, 但会影响懒加载路由
   },
   devServer: {
-    port: 4201,
+    port: clientPort,
     contentBase: 'public',
     watchOptions: {
       ignored: ['/node_modules/**', 'webpack.config.js']

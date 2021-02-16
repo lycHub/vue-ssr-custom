@@ -5,7 +5,7 @@ import Home from './pages/Home';
 
 const routes = [
   { path: '/home', component: Home },
-  { path: '/about', component: () => import('./pages/About.vue') },
+  { path: '/about', component: () => import(/* webpackChunkName: "about" */ './pages/About.vue') },
   { path: '', redirect: '/home' },
   { path: '**', redirect: '/home' },
 ]

@@ -4,7 +4,7 @@
   "description": "vue ssr",
   "main": "index.js",
   "scripts": {
-    "start:spa": "webpack serve --config configs/client/index.js",
+    "start:spa": "webpack serve --config configs/client",
     "start:ssr": "concurrently \"npm run start:spa\" \"nodemon server\"",
     "build:client": "webpack --env production --config configs/client",
     "build:server": "webpack --config configs/server.js",

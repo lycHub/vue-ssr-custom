@@ -9,6 +9,7 @@ const router = express.Router({ caseSensitive: true });
 
 
 const serverConfig = require('../../configs/server')
+const {clientPort} = require("../../configs/constant");
 // const { historyApiFallback } = require('koa2-connect-history-api-fallback');
 const serverCompiler = webpack(serverConfig)
 const mfs = new MemoryFS()
@@ -38,14 +39,15 @@ router.get('*', async (req, res) => {
       return;
     }
     res.setHeader("Server", serverInfo);
-    const clientBoundle = await axios.get('http://localhost:4201/vue-ssr-client-manifest.json')
-    const clientManifest = clientBoundle.data;
+    const clientBase = 'http://localhost:' + clientPort;
+    const clientBundle = await axios.get(clientBase + '/vue-ssr-client-manifest.json')
+    const clientManifest = clientBundle.data;
+    clientManifest.publicPath = clientBase;
     const template = readFileSync('public/index.template.html', 'utf-8');
     const renderer = createBundleRenderer(serverBundle, {
       runInNewContext: false,
       template,
-      clientManifest,
-      // basedir: resolve('./dist')
+      clientManifest
     });
     renderer.renderToString({ url: req.url }, (err, html) => {
       if (err) {
@@ -54,7 +56,7 @@ router.get('*', async (req, res) => {
       }
       res.writeHead(200,{ 'Content-Type': 'text/html;charset=utf-8' });
       res.end(html);
-    })
+    });
   }
 });
 

@@ -1,17 +1,18 @@
 <template>
   <div class="main">
     <header>
-      <ul>
-        <li v-for="item of channels" :key="item.id">{{ item.name }}</li>
-      </ul>
+      <Nav :list="channels" />
     </header>
     <router-view />
   </div>
 </template>
 <script>
   import axios from "axios";
+  import Nav from './components/Nav';
+
   export default {
     name: 'App',
+    components: { Nav },
     data() {
       return {
         title: 'abc',
