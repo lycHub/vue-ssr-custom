@@ -1,4 +1,4 @@
-const clientPort = 4201;
-const serverPort = 8000;
+const clientPort = 8080;
+const serverPort = 3333;
 
 module.exports = { clientPort, serverPort };

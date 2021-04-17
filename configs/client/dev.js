@@ -8,7 +8,7 @@ module.exports = merge(baseConfig, {
   mode: 'development',
   entry: join(__dirname, '../../src/entry-client.js'),
   output: {
-    publicPath: 'http://localhost:' + clientPort // 控制clientManifest.publicPath, 但会影响懒加载路由
+    publicPath: 'http://localhost:' + clientPort + '/' // 控制clientManifest.publicPath, 但会影响懒加载路由
   },
   devServer: {
     port: clientPort,

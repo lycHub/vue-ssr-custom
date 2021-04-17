@@ -15,5 +15,5 @@ app.use('/api', createProxyMiddleware({
 app.get('*', routes);
 
 app.listen(serverPort, () => {
-  console.log('Listen at http://localhost:8000');
+  console.log('Listen at http://localhost:' + serverPort);
 });
