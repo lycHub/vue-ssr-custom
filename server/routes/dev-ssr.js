@@ -25,7 +25,7 @@ function setupDevServer() {
 
     const serverBundlePath = path.join(serverConfig.output.path, 'vue-ssr-server-bundle.json')
     ready(JSON.parse(mfs.readFileSync(serverBundlePath, 'utf-8')))
-    console.log('new serverBundle generated');
+    // console.log('new serverBundle generated');
   })
   return onReady;
 }
