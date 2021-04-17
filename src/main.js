@@ -4,6 +4,12 @@ import createRouter from './router'
 import Meta from 'vue-meta'
 Vue.use(Meta)
 
+Vue.mixin({
+  metaInfo: {
+    titleTemplate: '%s - zgcf'
+  }
+});
+
 import './assets/styles/index';
 
 Vue.config.productionTip = false
